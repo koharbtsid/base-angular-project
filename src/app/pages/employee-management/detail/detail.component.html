@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-12 col-md-6">
+    <mat-card *ngIf="!isLoading">
+      <mat-card-title>Add Employee</mat-card-title>
+      <mat-card-content>
+          <div class="col-12">
+            <mat-form-field appearance="legacy">
+              <mat-label>Username</mat-label>
+              <input matInput readonly="true" value="{{ employee?.username }}" placeholder="Username">
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field appearance="legacy">
+              <mat-label>First Name</mat-label>
+              <input matInput readonly="true" value="{{ employee?.firstName }}" placeholder="First Name">
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field appearance="legacy">
+              <mat-label>Last Name</mat-label>
+              <input matInput readonly="true" value="{{ employee?.lastName }}" placeholder="Last Name">
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field appearance="legacy">
+              <mat-label>Email</mat-label>
+              <input matInput readonly="true" value="{{ employee?.email }}" placeholder="Email">
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field appearance="legacy">
+              <mat-label>Birth Date</mat-label>
+              <input matInput readonly="true" value="{{ employee?.birthDate }}" placeholder="Birth Date">
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field appearance="legacy">
+              <mat-label>Basic Salary</mat-label>
+              <input matInput readonly="true" value="Rp.{{ employee?.basicSalary | number }}" placeholder="Basic Salary">
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field appearance="legacy">
+              <mat-label>Status</mat-label>
+              <input matInput readonly="true" value="{{ employee?.status }}" placeholder="Status">
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field appearance="legacy">
+              <mat-label>Group</mat-label>
+              <input matInput readonly="true" value="{{ employee?.group }}" placeholder="Group">
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field appearance="legacy">
+              <mat-label>Description</mat-label>
+              <input matInput readonly="true" value="{{ employee?.description }}" placeholder="Description">
+             
+            </mat-form-field>
+          </div>
+        <!-- </form> -->
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button type="button" (click)="goBack()" mat-button>Back</button>
+      </mat-card-actions>
+     </mat-card>
+  </div>
+</div>
