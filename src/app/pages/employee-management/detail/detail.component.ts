@@ -41,6 +41,7 @@ export class DetailComponent implements OnInit {
   }
 
   goBack() {
+    localStorage.setItem('fromDetailEmployee', 'true');
     this._router.navigate(["employee-management"]);
   }
 

@@ -37,19 +37,6 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._router.events
-    .pipe(filter(event => event instanceof NavigationEnd))
-    .subscribe((event: any) => {
-      this.previousUrl = this.currentUrl;
-      console.log('-------prev:',  this.previousUrl?.includes("employee-management/detail"));
-      if (this.previousUrl?.includes("employee-management/detail") == true) {
-        this.isApplyPevSearch = true
-      }
-      this.currentUrl = event.url;
-    });
-
-
-
     this.getListEmployee();
   }
 
@@ -100,7 +87,6 @@ export class ListComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Employee>(this.data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log("1")
 
         this.getHostorySearch();
       }
@@ -108,15 +94,20 @@ export class ListComponent implements OnInit {
   }
 
   showDetailEmployee(data: any) {
-    localStorage.setItem('searchEmployeeText', this.searchText);
+    if (this.searchText) {
+      localStorage.setItem('searchEmployeeText', this.searchText);
+    }
     this._router.navigate(["employee-management/detail", data.id]);
   }
 
   getHostorySearch() {
-    if (this.haveSearchEmployeeText && this.isApplyPevSearch) {
-      this.haveSearchEmployeeText = localStorage.getItem('searchEmployeeText');
-      this.filterData(this.haveSearchEmployeeText);
-      this.searchText = this.haveSearchEmployeeText;
-    }
+    const fromDetailEmployee = localStorage.getItem('fromDetailEmployee');
+    const searchEmployeeText = localStorage.getItem('searchEmployeeText');
+    if (searchEmployeeText != undefined && fromDetailEmployee == 'true') {
+      this.filterData(searchEmployeeText);
+      this.searchText = searchEmployeeText;
+    } 
+    localStorage.removeItem('fromDetailEmployee');
+    localStorage.removeItem('searchEmployeeText');
   }
 }
